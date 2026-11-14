@@ -19,8 +19,59 @@
     </header>
 
     <main>
-        <h2>استفسار عن كورس</h2>
-        <p>يمكنك إرسال استفسارك وسنقوم بالرد عليك في أقرب وقت...</p>
+        <h2>استفسر عن كورس</h2>
+
+        <form action="#" method="POST">
+            <div>
+                <label for="full-name">الاسم الكامل:</label><br>
+                <input type="text" id="full-name" name="full_name" placeholder="مثال: أحمد محمد" autocomplete="name" required>
+            </div>
+            <br>
+
+            <div>
+                <label for="email">البريد الإلكتروني:</label><br>
+                <input type="email" id="email" name="email" placeholder="example@domain.com" autocomplete="email" required>
+            </div>
+            <br>
+
+            <div>
+                <label for="phone">رقم الهاتف:</label><br>
+                <input type="tel" id="phone" name="phone" placeholder="07xxxxxxxx" autocomplete="tel">
+            </div>
+            <br>
+
+            <div>
+                <label for="course-select">الكورس المستهدف:</label><br>
+                <select id="course-select" name="course" required>
+                    <option value="" disabled selected>اختر كورسا</option>
+                    <option value="content">HTML Content</option>
+                    <option value="forms">HTML Forms</option>
+                </select>
+            </div>
+            <br>
+
+            <div>
+                <label for="seats">عدد المقاعد:</label><br>
+                <input type="number" id="seats" name="seats" value="1" min="1" max="10">
+            </div>
+            <br>
+
+            <div>
+                <label for="pref-date">التاريخ المفضل:</label><br>
+                <input type="date" id="pref-date" name="preferred_date">
+            </div>
+            <br>
+
+            <div>
+                <label for="message">نص الاستفسار:</label><br>
+                <textarea id="message" name="enquiry_message" rows="4" cols="35" placeholder="اكتب استفسارك هنا..."></textarea>
+            </div>
+            <br>
+
+            <div>
+                <button type="submit">إرسال الاستفسار</button>
+            </div>
+        </form>
     </main>
 
     <footer>
