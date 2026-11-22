@@ -1,0 +1,66 @@
+:root {
+  --brand: #1d4ed8;
+  --card-bg: #ffffff;
+  --page-bg: #f4f6f9;
+  --text-color: #1f2937;
+  --open-bg: #dcfce7;
+  --open-text: #166534;
+  --full-bg: #e5e7eb;
+  --full-text: #374151;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text-color);
+}
+
+h1,
+h2 {
+  color: var(--brand);
+}
+
+.courses-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.course-card {
+  background-color: var(--card-bg);
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 16px;
+  width: 320px;
+}
+
+.course-card p {
+  background-color: transparent;
+  margin: 10px 0 14px;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* حالة الكورس المفتوح: خلفية خضراء فاتحة على span.status فقط */
+.course-card[data-status="open"] .status {
+  background-color: var(--open-bg);
+  color: var(--open-text);
+}
+
+/* حالة الكورس المكتمل: خلفية رمادية على span.status فقط */
+.course-card[data-status="full"] .status {
+  background-color: var(--full-bg);
+  color: var(--full-text);
+}

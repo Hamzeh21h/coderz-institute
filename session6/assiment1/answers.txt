@@ -1,0 +1,9 @@
+1) Stylesheet href paths per page:
+- index.html: href="./styles.css"
+- pages/courses.html: href="../styles.css"
+
+2) Selector for full course status:
+.course-card[data-status="full"] .status
+
+3) Explanation of which element it matches:
+This selector matches any element with the class "status" (such as <span class="status">) that is a descendant inside an element with the class "course-card" (such as <article class="course-card">) whose "data-status" attribute equals "full". It applies the styling only to that status element rather than the entire card or its description.
