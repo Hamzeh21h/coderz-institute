@@ -1,0 +1,26 @@
+1. Inspect the course heading (Specificity)
+- Prediction: The h1 color will be purple when the page opens.
+- Observation: In DevTools -> Styles, #course-title { color: purple; } sets the heading color, while .title and h1 are overridden (crossed out).
+- Explanation: An ID selector (#course-title) has higher specificity than a class selector (.title) and a type selector (h1). Even though h1 appears later in the stylesheet, specificity overrides source order when selectors have different specificity weights.
+
+2. Change the order of two rules (Source Order)
+- Step A (Rule added at the end, #course-title disabled):
+  * Prediction: The heading color will become orange.
+  * Observation: The heading turns orange.
+  * Explanation: Both .title rules have equal specificity, so when the orange rule is placed after the green rule, source order makes the later rule win.
+- Step B (Rule moved immediately before the green rule):
+  * Prediction: The heading color will return to green.
+  * Observation: The heading turns green.
+  * Explanation: With equal specificity, the green rule now comes after the orange rule in source order and wins.
+
+3. Trace the paragraph colors (Inheritance)
+- Prediction & Initial Computed check: Both paragraphs initially inherit the text color from .course-card via CSS inheritance.
+- Rule used:
+  .course-card > p { color: teal; }
+- Observation after rule: The direct child paragraph ("Learn how the browser chooses a style.") becomes teal, while the nested paragraph inside .details ("Next class: Monday") keeps the inherited color from .course-card.
+- Explanation (Child > vs Descendant space): The child combinator (>) matches only <p> elements that are direct children of .course-card. A descendant combinator (space) would match any <p> inside .course-card at any depth, including inside .details.
+
+4. Test the course link (:hover and :focus-visible)
+- Prediction: Hovering with the pointer will change the link color, and navigating with Tab will show a visible outline via :focus-visible.
+- Observation: Moving the pointer over the link applies the :hover color; moving the pointer away removes :hover, and pressing Tab to focus the link displays the visible focus-visible outline.
+- Explanation: :hover activates on pointer hover, whereas :focus-visible activates on keyboard focus (such as Tab navigation) to provide clear focus indication.
