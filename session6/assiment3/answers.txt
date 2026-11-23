@@ -1,0 +1,19 @@
+Bug 1: h2 font-size unit (em instead of rem)
+- Before fix: With styles.css loaded, root font-size at 16px, and .course-card font-size at 20px, h2 Computed font-size was 30px instead of 24px.
+- Problematic line: font-size: 1.5em; (inside .course-card h2)
+- Why it caused the issue: em resolves relative to the element's own computed font-size (20px on .course-card), producing 30px (1.5 * 20px) rather than 1.5 times the root font size (16px).
+- Fix & test: Changed font-size: 1.5em; to font-size: 1.5rem; while keeping root at 16px and .course-card at 20px. In DevTools -> Computed, h2 font-size became 24px.
+
+Bug 2: Misspelled CSS custom property --brand on headings
+- Before fix: h1 and h2 did not take the intended --brand color from :root.
+- Problematic line: color: var(--brnad); (inside h1, h2)
+- Why it caused the issue: "--brnad" does not match "--brand", so the custom property lookup fell back to the inherited/default color instead of the :root variable.
+- Fix & test: Fixed the variable name to var(--brand). Temporarily changing --brand in :root to a test color (such as #b91c1c) updated both h1 and h2 together, and then --brand was restored to #12546c before submission.
+
+Bug 3: Missing content property on ::before for h2 and inline style on h1
+- Before fix: The decorative bullet before "CSS Foundations" did not appear, and h1 stayed tomato because of an inline style attribute.
+- Problematic lines:
+  * .course-card h2::before { color: var(--brand); } (missing content property)
+  * <h1 style="color: tomato; ">coderz Institute</h1> (inline style overriding external rule)
+- Why it caused the issue: A ::before pseudo-element is not generated unless content is set, and inline styles have higher specificity than external CSS rules.
+- Fix & test: Added content: "• "; to .course-card h2::before and removed style="color: tomato; " from h1. Verified in the browser that the bullet appears before "CSS Foundations", h1 uses --brand, the card background (#eef5ff) and intro paragraph background (#fff4d9) match the acceptance criteria, and "View schedule" turns #6845a8 on hover and shows a 3px solid orange outline when reached with Tab.
